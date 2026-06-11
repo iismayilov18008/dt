@@ -62,7 +62,7 @@
 <script>
 const noBtn = document.getElementById("no");
 
-// Start position
+// starting position
 let x = window.innerWidth / 2;
 let y = window.innerHeight / 2;
 
@@ -71,16 +71,15 @@ noBtn.style.top = y + "px";
 
 noBtn.addEventListener("mouseenter", () => {
 
-    const step = 120; // how far it runs each time
+    const step = 120;
 
     const direction = Math.floor(Math.random() * 4);
 
-    if (direction === 0) x += step; // right
-    if (direction === 1) x -= step; // left
-    if (direction === 2) y += step; // down
-    if (direction === 3) y -= step; // up
+    if (direction === 0) x += step;
+    if (direction === 1) x -= step;
+    if (direction === 2) y += step;
+    if (direction === 3) y -= step;
 
-    // Keep inside screen bounds
     const maxX = window.innerWidth - noBtn.offsetWidth - 20;
     const maxY = window.innerHeight - noBtn.offsetHeight - 20;
 
@@ -93,7 +92,7 @@ noBtn.addEventListener("mouseenter", () => {
     noBtn.style.top = y + "px";
 });
 
-// YES
+// YES button action
 document.getElementById("yes").onclick = () => {
     document.body.innerHTML = `
         <div style="
@@ -102,16 +101,14 @@ document.getElementById("yes").onclick = () => {
             display:flex;
             justify-content:center;
             align-items:center;
-            font-family:Arial;
-            background: url('732d4891215702b953fa457e7c75d3db.jpg') center/cover no-repeat;
             position:relative;
+            font-family:Arial;
+            background: url('./732d4891215702b953fa457e7c75d3db.jpg') center/cover no-repeat;
         ">
 
-            <!-- dark overlay for better text visibility -->
+            <!-- dark overlay -->
             <div style="
                 position:absolute;
-                top:0;
-                left:0;
                 width:100%;
                 height:100%;
                 background:rgba(0,0,0,0.4);
@@ -122,7 +119,6 @@ document.getElementById("yes").onclick = () => {
                 color:white;
                 font-size:45px;
                 text-shadow: 2px 2px 10px black;
-                text-align:center;
             ">
                 She said YES 💖
             </h1>
