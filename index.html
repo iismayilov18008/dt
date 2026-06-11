@@ -45,7 +45,7 @@
         position: absolute;
         left: 60%;
         top: 60%;
-        transition: 0.2s ease;
+        transition: top 0.25s ease, left 0.25s ease;
     }
 </style>
 </head>
@@ -62,18 +62,38 @@
 <script>
 const noBtn = document.getElementById("no");
 
-noBtn.addEventListener("mouseenter", () => {
-    const maxX = window.innerWidth - noBtn.offsetWidth;
-    const maxY = window.innerHeight - noBtn.offsetHeight;
+// Start position
+let x = window.innerWidth / 2;
+let y = window.innerHeight / 2;
 
-    const x = Math.random() * maxX;
-    const y = Math.random() * maxY;
+noBtn.style.left = x + "px";
+noBtn.style.top = y + "px";
+
+noBtn.addEventListener("mouseenter", () => {
+
+    const step = 120; // how far it runs each time
+
+    const direction = Math.floor(Math.random() * 4);
+
+    if (direction === 0) x += step; // right
+    if (direction === 1) x -= step; // left
+    if (direction === 2) y += step; // down
+    if (direction === 3) y -= step; // up
+
+    // Keep inside screen bounds
+    const maxX = window.innerWidth - noBtn.offsetWidth - 20;
+    const maxY = window.innerHeight - noBtn.offsetHeight - 20;
+
+    if (x < 20) x = 20;
+    if (y < 20) y = 20;
+    if (x > maxX) x = maxX;
+    if (y > maxY) y = maxY;
 
     noBtn.style.left = x + "px";
     noBtn.style.top = y + "px";
 });
 
-// YES action
+// YES
 document.getElementById("yes").onclick = () => {
     document.body.innerHTML = `
         <div style="height:100vh;display:flex;justify-content:center;align-items:center;
